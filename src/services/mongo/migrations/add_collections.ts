@@ -13,7 +13,11 @@ const seedData = JSON.parse(fs.readFileSync(seedFile, 'utf-8'));
 export async function up() {
   Promise.all([
     seedData.forEach(
-      async (data: { reply: { text: any }; name: any; description: any }) => {
+      async (data: {
+        reply: { text: string };
+        name: string;
+        description: string;
+      }) => {
         const replyDocument = await new Reply({
           text: data.reply.text
         }).save();

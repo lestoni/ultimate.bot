@@ -7,7 +7,7 @@ import { ApiResponseBody } from '../entities/response';
 
 const logger = createLogger('controllers:conversation');
 const DEFAULT_MESSAGE_REPLY_MESSAGE =
-  'Sorry! I am not able to answer that at the moment :) One of our team members will help you!';
+  'Sorry, I am not able to answer that at the moment! Try another question';
 
 export class ConversationController {
   constructor(

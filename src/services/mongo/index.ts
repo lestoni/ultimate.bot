@@ -17,7 +17,7 @@ export class MongoService {
 
   static async establishConnection() {
     // connect to MongoDB
-    mongoose.connect(config.get('MONGODB_URL'));
+    await mongoose.connect(config.get('MONGODB_URL'));
 
     // Add MongoDB connection error Handler
     mongoose.connection.on('error', () => {

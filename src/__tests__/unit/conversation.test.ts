@@ -31,8 +31,4 @@ describe('conversation controller', () => {
     expect(answer).toHaveProperty('text');
     expect(ultimateAIServiceMock.getIntents).toHaveBeenCalledTimes(1);
   });
-
-  // it('responds with  custom confidence threshold', async () => {
-  //   conversationController.getReply();
-  // });
 });

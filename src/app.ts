@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
@@ -19,19 +19,13 @@ app.use(bodyParser.json());
 bindRoutes(app);
 
 // Default handler for unknown routes
-app.use('*', (req, res) => {
+app.use('*', (req: Request, res: Response) => {
   res.statusCode = 404;
   res.json({
     error: {
       message: 'End of the road Buster!!'
     }
   });
-});
-
-// Handle unexpected process errors
-process.on('uncaughtException', (err: Error) => {
-  logger.error('API experienced an unexpected error', err);
-  process.exit(1);
 });
 
 if (require.main === module) {
@@ -42,13 +36,20 @@ if (require.main === module) {
 
     app.listen(port, () => {
       logger.info(
-        `Ultimate.ai: API running on - http://localhost:${port} or http://${ip}:${port}`
+        `Ultimate.bot: API running on - http://localhost:${port} or http://${ip}:${port}`
       );
       logger.info(
-        `Ultimate.ai: Documentation available on - http://localhost:${port}/docs or http://${ip}:${port}/docs`
+        `Ultimate.bot: Documentation available on - http://localhost:${port}/docs or http://${ip}:${port}/docs`
       );
     });
   });
 }
+
+// Handle unexpected process errors
+process.on('uncaughtException', (err: Error) => {
+  console.log(err)
+  logger.error('API experienced an unexpected error', err);
+  process.exit(1);
+});
 
 export default app;

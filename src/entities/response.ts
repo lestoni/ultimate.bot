@@ -9,5 +9,6 @@ export interface ApiErrorResponseBody {
 }
 
 export enum HttpStatusCodes {
-  http_5xx = 500
+  http_5xx = 500,
+  http_4xx = 400
 }

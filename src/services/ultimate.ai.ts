@@ -24,6 +24,7 @@ export class UltimateAIService {
         }
       };
       const uri = `${config.get('ULTIMATE_AI_API_URL')}/intents`;
+      console.log(uri);
 
       const res = await axios.post<UltimateAIResponseBody>(
         uri,

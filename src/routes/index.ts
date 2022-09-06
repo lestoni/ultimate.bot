@@ -17,7 +17,7 @@ function bindRoutes(app: Express) {
     const { version, name, description } = pkg;
 
     res.json({
-      message: 'Welcome to Ultimate ai api!',
+      message: 'Welcome to Ultimate bot api!',
       documentation: `http://localhost:${port}/docs or http://${ip}:${port}/docs`,
       version,
       description,
