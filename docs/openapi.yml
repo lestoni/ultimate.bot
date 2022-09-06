@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  title: ultimate.ai
+  version: 0.0.1
+
+servers:
+  - url: http://localhost:8080
+
+
+paths:
+  /reply:
+    get:
+      summary: Returns bot's reply.
+      responses:
+        '200':
+          description: Service status
+          content:
+            'application/json; charset=utf-8':
+              schema:
+                $ref: '#/components/schemas/Reply'
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '500':
+          $ref: '#/components/responses/InternalError'
+ 
+components:
+
+  # RESPONSES
+  responses:
+    ## ERRORS
+    InternalError:
+      description: internal error
+      content:
+        'application/json; charset=utf-8':
+          schema:
+            type: object
+            required:
+              - message
+            properties:
+              message:
+                type: string
+                example: 'internal error'
+    NotFoundError:
+      description: Resource not found
+      content:
+        'application/json; charset=utf-8':
+          schema:
+            type: object
+            required:
+              - message
+            properties:
+              message:
+                type: string
+                example: 'not found'
+    BadRequestError:
+      description: Invalid operation params
+      content:
+        'application/json; charset=utf-8':
+          schema:
+            type: object
+            required:
+              - message
+            properties:
+              message:
+                type: string
+                example: 'bad request'
+  # SCHEMAS
+  schemas:
+    Reply:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          description: 'Bot Reply'
+          type: string
+          example: 'Hello!'
+
+  
