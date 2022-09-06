@@ -47,8 +47,7 @@ if (require.main === module) {
 
 // Handle unexpected process errors
 process.on('uncaughtException', (err: Error) => {
-  console.log(err)
-  logger.error('API experienced an unexpected error', err);
+  logger.error(`API experienced an unexpected error: ${err.message}`, err);
   process.exit(1);
 });
 

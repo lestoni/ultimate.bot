@@ -30,15 +30,15 @@ describe('Ultimate.bot:api', () => {
 
       const botReply = response.body;
       expect(botReply).toHaveProperty('text');
-      expect(botReply.text).toBe('Sorry, I am not able to answer that at the moment! Try another question');
+      expect(botReply.text).toBe(
+        'Sorry, I am not able to answer that at the moment! Try another question'
+      );
     });
 
     it('POST /reply - returns validation error', async () => {
       const response = await request(app).post('/reply').send({
         bot_id: '5f74865056d7bb000fcd39ff'
       });
-
-      console.log(response.body)
 
       expect(response.headers['content-type']).toMatch(/json/);
       expect(response.status).toEqual(400);
