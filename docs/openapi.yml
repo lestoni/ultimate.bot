@@ -1,19 +1,31 @@
 openapi: 3.0.0
 info:
-  title: ultimate.ai
+  title: ultimate.bot
   version: 0.0.1
 
 servers:
-  - url: http://localhost:8080
+  - url: http://127.0.0.1:8000
 
 
 paths:
   /reply:
-    get:
-      summary: Returns bot's reply.
+    post:
+      summary: Get a text reply for a message.
+      parameters:
+        - in: query
+          name: replyConfidence
+          schema:
+            type: number
+      requestBody:
+        description: contains bot identifier and message
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VisitorMessage'
       responses:
         '200':
-          description: Service status
+          description: Contains text response
           content:
             'application/json; charset=utf-8':
               schema:
@@ -40,18 +52,7 @@ components:
               message:
                 type: string
                 example: 'internal error'
-    NotFoundError:
-      description: Resource not found
-      content:
-        'application/json; charset=utf-8':
-          schema:
-            type: object
-            required:
-              - message
-            properties:
-              message:
-                type: string
-                example: 'not found'
+
     BadRequestError:
       description: Invalid operation params
       content:
@@ -75,5 +76,18 @@ components:
           description: 'Bot Reply'
           type: string
           example: 'Hello!'
-
+    VisitorMessage:
+      type: object
+      required:
+        - bot_id
+        - visitor_message
+      properties:
+        bot_id:
+          description: 'Bot Identifier'
+          type: string
+          example: '5f74865056d7bb000fcd39ff'
+        visitor_message:
+          description: 'Typed user message'
+          type: string
+          example: 'Knock Knock'
   

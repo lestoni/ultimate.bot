@@ -1,0 +1,7 @@
+PORT=8000
+LOG_LEVEL='info'
+NODE_ENV='development'
+ULTIMATE_AI_API_URL='https://chat.ultimate.ai/api/'
+ULTIMATE_AI_API_KEY=example_api_key
+MONGODB_URL='mongodb://localhost:27017/test'
+MIGRATE_dbConnectionUri='mongodb://localhost:27017/test' # Mongodb URI for migration, same as above
